@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Pick your gender</title>
+    <style>
+        *
+        {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+        }
+
+        #instagram-logo-top-left
+        {
+            width: 32px;
+            height: 32px;
+            animation: roll 1.2s normal;
+        }
+
+        @keyframes roll {
+            0%
+            {
+                transform: rotateZ(0deg);
+            }
+            100%
+            {
+                transform: rotateZ(360deg);
+            }
+        }
+
+        #username
+        {
+            display: block;
+            font-size: 30px;
+            margin-top: 8px;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 700;
+            background: -webkit-linear-gradient(#4E4AE8, #E64FA4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #male-button
+        {
+            background-color: #0A4DB2;
+            color: white;
+            font-size: 13px;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            margin-top: 18px;
+            width: 80%;
+            transition: 0.05s;
+            animation: grow 0.4s normal;
+        }
+
+        #male-button:active
+        {
+            background-color: rgb(8, 54, 111);
+            transform: scale(0.98, 0.98);
+        }
+
+        #female-button
+        {
+            background-color: #B20A8D;
+            color: white;
+            font-size: 13px;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            margin-top: 8px;
+            width: 80%;
+            transition: 0.05s;
+            animation: grow 0.4s normal;
+            animation-delay: 0.08s;
+        }
+
+        @keyframes grow
+        {
+            0%
+            {
+                transform: scale(0.5, 0.5);
+                opacity: 0.5;
+            }
+
+            80%
+            {
+                transform: scale(1.02, 1.02);
+                opacity: 1;
+            }
+
+            100%
+            {
+                transform: scale(1, 1);
+                opacity: 1;
+            }
+        }
+
+        #female-button:active
+        {
+            background-color: #72065b;
+            transform: scale(0.98, 0.98);
+        }
+
+        #background-image
+        {
+            background-image: url("https://i.ibb.co/7K1mXg8/IMG-20230225-195735-01-01.jpg");
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            z-index: -2;
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+        }
+
+        #background-color
+        {
+            background-color: #000000;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.95;
+        }
+
+        #body-content
+        {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            z-index: 10;
+            padding-top: 180px;
+        }
+    </style>
+    <script>
+        answered = false;
+
+        function set(value)
+        {
+            if (!answered)
+            {
+                answered = true;
+
+                document.cookie = "gender=" + value + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;";
+                setTimeout(() => {
+                    location.reload();
+                }, 600);
+            }
+        }
+    </script>
+</head>
+<body oncontextmenu="return false;">
+
+    <!-- Background -->
+    <canvas id="background-image"></canvas>
+    <canvas id="background-color"></canvas>
+
+    <!-- Content -->
+    <div id="body-content">
+        <img id="instagram-logo-top-left" class="instagram-logo-animation-class" src="https://i.ibb.co/yQdBJPC/ri-instagram-fill.png"><br>
+        <span id="username">WHO'RE YOU?</span><br>
+
+        <button id="male-button" onclick="set('m');">MALE</button><br>
+        <button id="female-button" onclick="set('f');">FEMALE</button>
+    </div>
+</body>
+</html>
